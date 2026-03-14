@@ -48,10 +48,14 @@ if (container) {
         <img src="${product.thumbnail}"referrerpolicy="no-referrer">
         <div class="img1"></div>
         <h3 class="sec1h">${product.title}</h3>
-        <p class="sec1p3">out of stock</p>
+        <p class="${product.title === 'Samsung A546E Galaxy A54 (6GB/128GB) Dual Sim LTE/5G - Black' ? 'green' : 'stock'}">
+          ${product.stock} stock
+        </p>
         <p class="sec1p">$${product.price.current}</p>
         <p class="sec1p2">⭐${product.rating}</p>
-        <button class="button1">Add To Cart</button>
+        <button class="cbutton" ${product.stock <= 0 ? "disabled" : ""}>
+          Add To Cart
+        </button>
         </div>      `
       })
     });
@@ -176,14 +180,17 @@ function loadProducts(page){
       <div class="card1">
         <img src="${product.thumbnail}" class="cimg1"referrerpolicy="no-referrer">
         <h3 class="ch3">${product.title}</h3>
+        <p class="${product.title === 'Samsung A546E Galaxy A54 (6GB/128GB) Dual Sim LTE/5G - Black' ? 'green' : 'stock'}">
+          ${product.stock} stock
+        </p>
         <p class="cp1">${product.price.current}$</p>
         <p class="cp2">⭐ ${product.rating}</p>
-        <button class="cbutton">Add To Cart</button>
+        <button class="cbutton" ${product.stock <= 0 ? "disabled" : ""}>
+          Add To Cart
+        </button>
       </div>
       `;
-
     });
-
   });
 
 }
@@ -222,14 +229,13 @@ function displayProducts(products) {
       <div class="card1">
         <img src="${product.thumbnail}" class="cimg1">
         <h3 class="ch3">${product.title}</h3>
+        <p class="stock">${product.stock}stock</p>
         <p class="cp1">$${product.price.current}</p>
         <p class="cp2">⭐ ${product.rating}</p>
         <button class="cbutton">Add To Cart</button>
       </div>
     `;
-
   });
-
 }
 async function searchProducts() {
 
