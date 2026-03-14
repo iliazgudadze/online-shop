@@ -97,9 +97,14 @@ function loadCategory(id){
         <div class="card1">
           <img src="${product.thumbnail}" class="cimg1">
           <h3 class="ch3">${product.title}</h3>
+           <p class="${product.title === 'Samsung A546E Galaxy A54 (6GB/128GB) Dual Sim LTE/5G - Black' ? 'green' : 'stock'}">
+              ${product.stock} stock
+           </p>
           <p class="cp1">$${product.price.current}</p>
           <p class="cp2">⭐ ${product.rating}</p>
-          <button class="cbutton">Add To Cart</button>
+          <button class="cbutton" ${product.stock <= 0 ? "disabled" : ""}>
+            Add To Cart
+          </button>
         </div>
       `;
 
@@ -143,9 +148,14 @@ function loadBrand(brand) {
         <div class="card1">
           <img src="${product.thumbnail}" class="cimg1">
           <h3 class="ch3">${product.title}</h3>
+          <p class="${product.title === 'Samsung A546E Galaxy A54 (6GB/128GB) Dual Sim LTE/5G - Black' ? 'green' : 'stock'}">
+              ${product.stock} stock
+           </p>
           <p class="cp1">$${product.price.current}</p>
           <p class="cp2">⭐ ${product.rating}</p>
-          <button class="cbutton">Add To Cart</button>
+          <button class="cbutton" ${product.stock <= 0 ? "disabled" : ""}>
+            Add To Cart
+          </button>
         </div>
       `
 
@@ -177,7 +187,7 @@ function loadProducts(page){
     data.products.forEach(product => {
 
       allProductContainer.innerHTML += `
-      <div class="card1">
+      <div class="card1" onclick="openProduct('${product._id}')">
         <img src="${product.thumbnail}" class="cimg1"referrerpolicy="no-referrer">
         <h3 class="ch3">${product.title}</h3>
         <p class="${product.title === 'Samsung A546E Galaxy A54 (6GB/128GB) Dual Sim LTE/5G - Black' ? 'green' : 'stock'}">
@@ -203,36 +213,30 @@ loadProducts(1);
 
 
 const searchInput = document.getElementById("search");
-
 searchInput.addEventListener("input", searchProducts);
-
 async function searchProducts() {
-
   const value = searchInput.value;
-
   const response = await fetch(
     `https://api.everrest.educata.dev/shop/products/search?brand=${value}`
   );
-
   const data = await response.json();
-
   displayProducts(data.products);
-
 }
 function displayProducts(products) {
-
   allProductContainer.innerHTML = "";
-
   products.forEach(product => {
-
     allProductContainer.innerHTML += `
       <div class="card1">
         <img src="${product.thumbnail}" class="cimg1">
         <h3 class="ch3">${product.title}</h3>
-        <p class="stock">${product.stock}stock</p>
+        <p class="${product.title === 'Samsung A546E Galaxy A54 (6GB/128GB) Dual Sim LTE/5G - Black' ? 'green' : 'stock'}">
+          ${product.stock} stock
+        </p>
         <p class="cp1">$${product.price.current}</p>
         <p class="cp2">⭐ ${product.rating}</p>
-        <button class="cbutton">Add To Cart</button>
+        <button class="cbutton" ${product.stock <= 0 ? "disabled" : ""}>
+          Add To Cart
+        </button>
       </div>
     `;
   });
@@ -254,4 +258,7 @@ async function searchProducts() {
 
   displayProducts(data.products);
 
+}
+function openProduct(id) {
+  window.location.href = `product.html?id=${id}`
 }

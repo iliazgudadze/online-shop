@@ -647,6 +647,111 @@ opacity: 0.6;
   transform: scale(1.1);
   
 }
+.productpage{
+  display: flex;
+}
+.productimg{
+  border: 2px solid #e8e8e8;
+  border-radius: 15px;
+  height: 60vh;
+  width: 60vh;
+  object-fit: contain;
+}
+.product-right{
+  margin: 10px;
+}
+.ph1{
+  font-family: roboto;
+  font-weight: 900;
+  padding: 5px;
+  font-size: x-large;
+}
+.price{
+  font-family: roboto;
+  font-weight: 900;
+  padding: 5px;
+  font-size: x-large;
+}
+.rating{
+  font-family: roboto;
+  font-weight: 900;
+  padding: 5px;
+  font-size: x-large;
+}
+.pstock{
+  color: red;
+  font-family: roboto;
+  font-weight: 900;
+  padding: 5px;
+  font-size: x-large;
+}
+.ph3{
+  border-bottom: 2px solid black;
+  text-align: center;
+  align-items: center;
+  font-family: roboto;
+  font-weight: 900;
+  padding: 5px;
+  font-size: x-large;
+}
+.description{
+  font-family: roboto;
+  font-weight: 400;
+  padding: 5px;
+  font-size: 20px;
+}
+.pbutton {
+  padding: 5px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border-radius: 99px;
+  border: none;
+}
+.pbutton:disabled{
+background: gray;
+cursor: not-allowed;
+opacity: 0.6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
