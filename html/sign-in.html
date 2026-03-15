@@ -4,8 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
+    <header class="header">
+        <div>
+            <a href="../index.html">
+                <h1 class="headerh">Digital <span class="onespan">Store</span></h1>
+            </a>
+        </div>
+        <div class="searchs">
+            <div class="search-box">
+                <input class="oneinput" id="search" placeholder="Search..." />
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="auth">
+                <a href="./sign-up.html"><i class="fa-regular fa-id-card"></i> Sign up</a>
+                <a href="./sign-in.html"><i class="fa-regular fa-user"></i> Log in</a>
+            </div>
+            <div class="menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            
+            <div class="mobile-menu">
+            
+                <i class="fa-solid fa-xmark close"></i>
+            
+                <a href="./index.html">Home</a>
+                <a href="./html/shop.html">Shop</a>
+                <a href="./html/sign-in.html">Log in</a>
+                <a href="./html/sign-up.html">Sign up</a>
+            
+            </div>
+        </div>
+    </header>
+    <div>
+        <div>
+            <input type="email" id="signin-email" placeholder="you email" name="email">
+        <input type="text" id="signin-password" placeholder="you pass" name="password">
+        <button onclick="SigIn()">Sign in</button>
+        </div>
+         <button onclick="GetCurrentUser()">GetCurrentUser</button>
+         <div id="user-info"></div>
+    </div>
+    <script src="../js/sign-up.js"></script>
 </body>
 </html>

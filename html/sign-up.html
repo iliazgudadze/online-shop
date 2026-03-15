@@ -43,31 +43,31 @@
     <div class="signdiv2">
         <div class="signdiv3">
             <form class="signup" id="signupform">
-            <div class="formdiv1">
-                <input class="input" id="FirstName" type="FirstName">
-                <input class="input" id="LastName" type="LastName">
-                <input class="input" id="Email" type="Email">
-                <input class="input" id="Password" type="Password">
+                <div class="formdiv1">
+                    <input class="input" id="Signup-FirstName" type="text" placeholder="you name" name="firstname">
+                    <input class="input" id="Signup-LastName" type="text" placeholder="you lastname" name="lastname">
+                    <input class="input" id="Signup-age" type="number" placeholder="you age" name="age">
+                    <input class="input" id="Signup-email" type="email" placeholder="you email" name="email">
+                </div>
+                <div class="formdiv2">
+                    <input class="input" id="Signup-password" type="text" placeholder="you pass" name="password">
+                    <input class="input" id="Signup-adress" type="text" placeholder="adress" name="adress">
+                    <input class="input" id="Signup-phone" type="phone" placeholder="you phone" name="phone">
+                    <input class="input" id="Signup-zipcode" type="zipcode" placeholder="zipcode" name="zipcode">
+                    <input type="text" id="Signup-avatar" placeholder="avatar" name="avatar">
+                    <select name="" id="Signup-gender">
+                        <option value="MALE">male</option>
+                        <option value="FEMALE">female</option>
+                    </select>
+                    <button type="submit" onclick="signUp(event)">Sign up</button>
+            </form>
             </div>
-            <div class="formdiv2">
-                <input class="input" id="phone" type="phone">
-                <input class="input" id="ZIP code" type="ZIP code">
-                <input class="input" id="Address" type="Address">
-                <input class="input" id="age" type="age">
-            </div>
-            <input class="inputimage" id="images" type="images">
-        </form>
         </div>
-        
-    </div>
-    
-    <div>
-        <button>REGISTER</button>
     </div>
 
 
 
 
-
+<script src="../js/sign-up.js"></script>
 </body>
 </html>
