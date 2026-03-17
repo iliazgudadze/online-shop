@@ -513,54 +513,6 @@ transform:scale(1.05);
   border: 3px solid red;
   
 }
-
-
-/* .signdiv2{
-  border-radius: 16px;
-  border-top: 5px solid #111;
-  display: flex;
-  justify-content: center;
-}
-.signdiv3{
-  display: flex;
-  flex-direction: column;
-}
-.signup{
-  width: 1000px;
-  gap: 15px;
-  margin: 10px;
-  padding: 20px;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  display: flex;
-} */
-/* .formdiv1{
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.formdiv2{
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.input{
-  border: none;
-  border: 1px solid #313131;
-  border-radius: 10px;
-  padding: 10px;
-}
-.inputimage{
-  border: none;
-  border: 1px solid #313131;
-  border-radius: 10px;
-  padding: 10px;
-  width: 92%;
-} */
 .leadsection{
   display: flex;
 }
@@ -764,6 +716,11 @@ background: gray;
 cursor: not-allowed;
 opacity: 0.6;
 }
+.pbutton:hover{
+  text-shadow: 0px 0px 10px #fff;
+  transition: 0.3s;
+  box-shadow: 0px 0px 10px black;
+}
 .pgreen{
   color: green;
   font-family: roboto;
@@ -773,7 +730,80 @@ opacity: 0.6;
 }
 
 
+.signdiv2 {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.signdiv3 {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formdiv1,
+.formdiv2 {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.input {
+  flex: 1 1 48%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.3s;
+}
+
+#Signup-email,
+#Signup-password,
+#Signup-adress,
+#Signup-phone,
+#Signup-zipcode,
+#Signup-avatar,
+#Signup-gender {
+  flex: 1 1 100%;
+}
+
+.input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 6px rgba(102, 126, 234, 0.5);
+}
+
+#Signup-gender {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #667eea;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #5a67d8;
+  transform: scale(1.05);
+}
 
 
 

@@ -53,7 +53,7 @@ async function signIn() {
 async function getCurrentUser() {
     if(!accessToken){
         alert("თავიდან სცადე");
-        return
+        return;
     }
     const res = await fetch("https://api.everrest.educata.dev/auth",{
         headers:{
@@ -63,11 +63,11 @@ async function getCurrentUser() {
     })
 
     const user = await res.json()
-document.getElementById("user-info").innerHTML=`
-<p>Name: ${user.firstname}</p>
-<p>Name: ${user.email}</p>
-<p>Name: ${user.age}</p>
-
-`
-console.log(user)
+    document.getElementById("user-info").innerHTML=`
+    <p>Name: ${user.firstname}</p>
+    <p>Name: ${user.email}</p>
+    <p>Name: ${user.age}</p>
+    
+    `
+    console.log(user)
 }
