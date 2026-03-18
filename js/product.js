@@ -20,8 +20,9 @@ fetch(`https://api.everrest.educata.dev/shop/products/id/${productId}`)
                     </p>
                     <h3 class="ph3" >Description</h3>
                     <p class="description">${product.description}</p>
-                    <button class="pbutton" ${product.stock <= 0 ? "disabled" : ""}>
-                        Add To Cart
+                    <button onclick="addToCart('${product._id}')"
+                      class="button ${product.stock <= 0 ? "disabled" : ""}">
+                      Add To Cart
                     </button>
                 </div> 
             </div>
