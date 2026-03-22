@@ -87,20 +87,39 @@ async function addToCart(productId) {
         return;
     }
     try {
-        const res = await fetch("https://api.everrest.educata.dev/shop/cart/product", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({ id: productId, quantity: 1 })
+        const cartRes = await fetch("https://api.everrest.educata.dev/shop/cart", {
+            headers: { Authorization: `Bearer ${token}` }
         });
+        const cartData = await cartRes.json();
+
+        const existing = cartData.products?.find(p => p.productId === productId);
+
+        let res;
+        if (existing) {
+            res = await fetch("https://api.everrest.educata.dev/shop/cart/product", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ id: productId, quantity: existing.quantity + 1 })
+            });
+        } else {
+            res = await fetch("https://api.everrest.educata.dev/shop/cart/product", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ id: productId, quantity: 1 })
+            });
+        }
         const data = await res.json();
         if (res.ok) {
             alert("პროდუქტი დაემატა კალათაში ✓");
             updateCartCount(data.products ? data.products.length : 0);
         } else {
-            alert("შეცდომა: " + (data.message || data.error));
+            alert("შეცდომა: გთხოვთ გაიაროთ ავტორიზაცია");
         }
     } catch (err) {
         console.error("Add to cart error:", err);
@@ -165,7 +184,6 @@ async function removeFromCart(productId) {
             },
             body: JSON.stringify({ id: productId })
         });
-
         const data = await res.json();
         if (res.ok) {
             await renderCart(data);
@@ -184,7 +202,6 @@ async function clearCart() {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         });
-
         if (res.ok) {
             // manually reset UI without waiting for loadCart
             const container = document.getElementById("cart-container");
@@ -199,7 +216,6 @@ async function clearCart() {
 }
 async function checkout() {
     const token = localStorage.getItem("token");
-
     if (!token) {
         alert("გთხოვთ გაიაროთ ავტორიზაცია");
         window.location.href = "./sign-in.html";
