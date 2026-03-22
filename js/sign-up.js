@@ -24,30 +24,31 @@ async function signUp(event) {
   });
 
   const data = await res.json();
-
+  localStorage.setItem("token", data.access_token);
   alert("Signed up");
   console.log(data);
 }
 
-
 async function getCurrentUser() {
-    if(!accessToken){
-        alert("თავიდან სცადე");
-        return;
-    }
-    const res = await fetch("https://api.everrest.educata.dev/auth",{
-        headers:{
-           'Authorization':`Bearer ${accessToken}`,
-           "accept": "application/json"
-        }
-    })
+  const accessToken = localStorage.getItem("token");
 
-    const user = await res.json()
-    document.getElementById("user-info").innerHTML=`
-    <p>Name: ${user.firstname}</p>
+  if (!accessToken) {
+    alert("გაიარე ავტორიზაცია");
+    return;
+  }
+  const res = await fetch("https://api.everrest.educata.dev/auth/me", {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+      "accept": "application/json"
+    }
+  })
+
+  const user = await res.json()
+  document.getElementById("user-info").innerHTML = `
+    <p>Name: ${user.firstName}</p>
     <p>Name: ${user.email}</p>
     <p>Name: ${user.age}</p>
     
     `
-    console.log(user)
+  console.log(user)
 }

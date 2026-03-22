@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <a href="../index.html">
+                <h1 class="headerh">Digital <span class="onespan">Store</span></h1>
+            </a>
+            
+        </div>
+        <div>
+            <input type="text" id="search" class="search-box" placeholder="ძებნა...">
+        </div>
+        <div class="header-right">
+            <div class="auth">
+              <a href="./sign-up.html"><i class="fa-regular fa-id-card"></i> Sign up</a>
+              <a href="./sign-in.html"><i class="fa-regular fa-user"></i> Log in</a>
+              <a href="./profile.html">profile</a>
+            </div> 
+            <input type="checkbox" id="menu-toggle">
+        
+            <label for="menu-toggle" class="menu-icon">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+        
+            <div class="mobile-menu">
+        
+                <label for="menu-toggle" class="close">
+                    <i class="fa-solid fa-xmark"></i>
+                </label>
+        
+                <a href="../index.html">Home</a>
+                <a href="./shop.html">Shop</a>
+                <a href="./sign-in.html">Log in</a>
+                <a href="./sign-up.html">Sign up</a>
+                <a href="./profile.html">profile</a>
+        
+            </div>
+        </div>
+    </header> 
+    <section class="profile">
+        <div class="profile-page">
+
+            <div class="profile-hero">
+                <div class="avatar-wrap">
+                    <div class="avatar" id="avatar-initials">?</div>
+                    <div class="avatar-badge"></div>
+                </div>
+                <div class="profile-meta">
+                    <h1 id="hero-name">Loading...</h1>
+                    <div class="email-badge">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span id="hero-email">—</span>
+                    </div>
+                </div>
+                <button class="btn btn-danger" onclick="logout()" style="margin-left:auto">
+                    <i class="fa-solid fa-right-from-bracket"></i> Log out
+                </button>
+            </div>
+            <div class="edit-card">
+                <div class="card-title">
+                    Edit Profile <span class="pill">Personal Info</span>
+                </div>
+    
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" placeholder="First name" />
+                    </div>
+                    <div class="field">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" placeholder="Last name" />
+                    </div>
+                    <div class="field">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" placeholder="Age" />
+                    </div>
+                    <div class="field">
+                        <label for="gender">Gender</label>
+                        <select id="gender">
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                        </select>
+                    </div>
+                    <div class="field full">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Email address" />
+                    </div>
+                    <div class="field full">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" placeholder="Phone number" />
+                    </div>
+                    <div class="field full">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" placeholder="Address" />
+                    </div>
+                    <div class="field">
+                        <label for="zipcode">Zip Code</label>
+                        <input type="text" id="zipcode" placeholder="Zip code" />
+                    </div>
+                    <div class="field">
+                        <label for="avatar">Avatar URL</label>
+                        <input type="text" id="avatar-url" placeholder="https://..." />
+                    </div>
+                </div>
+    
+                <div class="actions">
+                    <button class="btn btn-ghost" onclick="loadUser()">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
+                    <button class="btn btn-primary" onclick="updateUser()">
+                        <i class="fa-solid fa-check"></i> Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="toast" id="toast">
+            <i class="fa-solid fa-circle-check"></i>
+            <span id="toast-msg">Saved!</span>
+        </div>
+    </section>
+
+    <script src="../js/profile.js"></script>
+</body>
+</html>

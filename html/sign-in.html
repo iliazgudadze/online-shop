@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign In — Digital Store</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <header class="header">
+
+   <header class="header">
         <div>
             <a href="../index.html">
                 <h1 class="headerh">Digital <span class="onespan">Store</span></h1>
             </a>
+            
+        </div>
+        <div>
+            <input type="text" id="search" class="search-box" placeholder="ძებნა...">
         </div>
         <div class="header-right">
             <div class="auth">
               <a href="./sign-up.html"><i class="fa-regular fa-id-card"></i> Sign up</a>
               <a href="./sign-in.html"><i class="fa-regular fa-user"></i> Log in</a>
+              <a href="./profile.html">profile</a>
             </div> 
             <input type="checkbox" id="menu-toggle">
         
@@ -37,19 +42,37 @@
                 <a href="./shop.html">Shop</a>
                 <a href="./sign-in.html">Log in</a>
                 <a href="./sign-up.html">Sign up</a>
+                <a href="./profile.html">profile</a>
         
             </div>
         </div>
     </header> 
-    <div>
-        <div>
-            <input type="email" id="signin-email" placeholder="you email" name="email">
-        <input type="text" id="signin-password" placeholder="you pass" name="password">
-        <button onclick="signIn()">Sign in</button>
+
+    <section class="signin-section">
+        <div class="signin-card">
+            <h2>კეთილი იყოს თქვენი დაბრუნება</h2>
+            <p class="signin-sub">შედით თქვენს ანგარიშზე</p>
+
+            <div class="signin-field">
+                <label for="signin-email">ელ-ფოსტა</label>
+                <input type="email" id="signin-email" placeholder="example@mail.com" name="email">
+            </div>
+
+            <div class="signin-field">
+                <label for="signin-password">პაროლი</label>
+                <input type="password" id="signin-password" placeholder="••••••••" name="password">
+            </div>
+
+            <button class="signin-btn" onclick="signIn()">
+                <i class="fa-solid fa-right-to-bracket"></i> შესვლა
+            </button>
+
+            <p class="signin-footer">
+                ანგარიში არ გაქვს? <a href="./sign-up.html">დარეგისტრირდი</a>
+            </p>
         </div>
-         <button onclick="getCurrentUser()">GetCurrentUser</button>
-         <div id="user-info"></div>
-    </div>
+    </section>
+
     <script src="../js/signin.js"></script>
 </body>
 </html>

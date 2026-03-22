@@ -1,12 +1,5 @@
 async function loadCart() {
     const token = localStorage.getItem("token");
-
-    if (!token) {
-        alert("გთხოვთ გაიაროთ ავტორიზაცია");
-        window.location.href = "./sign-in.html";
-        return;
-    }
-
     const loader = document.getElementById("loader");
     if (loader) loader.style.display = "block";
 
@@ -31,18 +24,14 @@ async function loadCart() {
         if (loader) loader.style.display = "none";
     }
 }
-
-
 async function renderCart(data) {
     const container = document.getElementById("cart-container");
     if (!container) return;
-
     if (!data.products || data.products.length === 0) {
-        container.innerHTML = "<p>კალათა ცარიელია</p>";
+        container.innerHTML = "<p style='text-align:center; color:#888; padding:40px 0;'>კალათა ცარიელია</p>";
         updateTotal(0);
         return;
     }
-
     const items = await Promise.all(
         data.products.map(async (item) => {
             try {
@@ -54,48 +43,49 @@ async function renderCart(data) {
             }
         })
     );
-
     let total = 0;
-
     container.innerHTML = items.map(item => {
         if (!item.product) return "";
         total += item.product.price.current * item.quantity;
         return `
-        <div class="cart-item" style="display:flex; gap:16px; margin-bottom:16px; border-bottom:1px solid #eee; padding-bottom:16px; align-items:center;">
-            <img src="${item.product.thumbnail}" alt="${item.product.title}" style="width:90px; height:90px; object-fit:cover; border-radius:8px;">
-            <div style="flex:1;">
+        <div class="cart-item">
+            <img src="${item.product.thumbnail}" alt="${item.product.title}">
+            <div class="cart-item-info">
                 <h3>${item.product.title}</h3>
-                <p>ფასი: $${item.product.price.current}</p>
-                <p>რაოდენობა: ${item.quantity}</p>
-                <div style="display:flex; gap:8px; margin-top:8px;">
-                    <button onclick="decreaseQuantity('${item.productId}', ${item.quantity})" style="padding:4px 10px;">-</button>
-                    <span style="padding:4px 10px;">${item.quantity}</span>
-                    <button onclick="increaseQuantity('${item.productId}', ${item.quantity})" style="padding:4px 10px;">+</button>
-                    <button onclick="removeFromCart('${item.productId}')" style="color:red; margin-left:8px; padding:4px 10px;">წაშლა</button>
+                <p class="item-price">$${item.product.price.current} / ერთი</p>
+                <div class="cart-item-actions">
+                    <div class="qty-controls">
+                        <button onclick="decreaseQuantity('${item.productId}', ${item.quantity})">−</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="increaseQuantity('${item.productId}', ${item.quantity})">+</button>
+                    </div>
+                    <button class="btn-remove" onclick="removeFromCart('${item.productId}')">
+                        <i class="fa-solid fa-trash"></i> წაშლა
+                    </button>
                 </div>
             </div>
-            <p style="font-weight:bold;">$${item.product.price.current * item.quantity}</p>
+            <p class="cart-item-total">$${(item.product.price.current * item.quantity).toFixed(2)}</p>
         </div>
         `;
     }).join("");
 
     updateTotal(total);
 }
-
 function updateTotal(total) {
     const totalEl = document.getElementById("cart-total");
-    if (totalEl) totalEl.textContent = `სულ: $${total}`;
+    if (totalEl) totalEl.innerHTML = `<div class="total-row"><span>სულ:</span><span>$${total.toFixed(2)}</span></div>`;
 }
-
+function updateCartCount(count) {
+    const cartCount = document.getElementById("cart-count");
+    if (cartCount) cartCount.textContent = count;
+}
 async function addToCart(productId) {
     const token = localStorage.getItem("token");
-
     if (!token) {
         alert("კალათაში დასამატებლად გაიარეთ ავტორიზაცია");
         window.location.href = "./sign-in.html";
         return;
     }
-
     try {
         const res = await fetch("https://api.everrest.educata.dev/shop/cart/product", {
             method: "POST",
@@ -105,10 +95,7 @@ async function addToCart(productId) {
             },
             body: JSON.stringify({ id: productId, quantity: 1 })
         });
-
         const data = await res.json();
-        console.log("Add to cart:", data);
-
         if (res.ok) {
             alert("პროდუქტი დაემატა კალათაში ✓");
             updateCartCount(data.products ? data.products.length : 0);
@@ -123,7 +110,6 @@ async function addToCart(productId) {
 async function increaseQuantity(productId, currentQty) {
     const token = localStorage.getItem("token");
     if (!token) return;
-
     try {
         const res = await fetch("https://api.everrest.educata.dev/shop/cart/product", {
             method: "PATCH",
@@ -133,7 +119,6 @@ async function increaseQuantity(productId, currentQty) {
             },
             body: JSON.stringify({ id: productId, quantity: currentQty + 1 })
         });
-
         const data = await res.json();
         if (res.ok) {
             await renderCart(data);
@@ -143,16 +128,13 @@ async function increaseQuantity(productId, currentQty) {
         console.error("Update error:", err);
     }
 }
-
 async function decreaseQuantity(productId, currentQty) {
     if (currentQty <= 1) {
         removeFromCart(productId);
         return;
     }
-
     const token = localStorage.getItem("token");
     if (!token) return;
-
     try {
         const res = await fetch("https://api.everrest.educata.dev/shop/cart/product", {
             method: "PATCH",
@@ -162,7 +144,6 @@ async function decreaseQuantity(productId, currentQty) {
             },
             body: JSON.stringify({ id: productId, quantity: currentQty - 1 })
         });
-
         const data = await res.json();
         if (res.ok) {
             await renderCart(data);
@@ -172,11 +153,9 @@ async function decreaseQuantity(productId, currentQty) {
         console.error("Update error:", err);
     }
 }
-
 async function removeFromCart(productId) {
     const token = localStorage.getItem("token");
     if (!token) return;
-
     try {
         const res = await fetch("https://api.everrest.educata.dev/shop/cart/product", {
             method: "DELETE",
@@ -196,28 +175,22 @@ async function removeFromCart(productId) {
         console.error("Remove error:", err);
     }
 }
-
 async function clearCart() {
     const token = localStorage.getItem("token");
     if (!token) return;
-
     if (!confirm("დარწმუნებული ხართ რომ გსურთ კალათის გასუფთავება?")) return;
-
     try {
         const res = await fetch("https://api.everrest.educata.dev/shop/cart", {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         });
 
-        const data = await res.json();
-        if (res.ok) {
-            loadCart();
-        }
+        if (res.ok) loadCart();
+
     } catch (err) {
         console.error("Clear cart error:", err);
     }
 }
-
 async function checkout() {
     const token = localStorage.getItem("token");
 
@@ -226,7 +199,6 @@ async function checkout() {
         window.location.href = "./sign-in.html";
         return;
     }
-
     try {
         const res = await fetch("https://api.everrest.educata.dev/shop/cart/checkout", {
             method: "POST",
@@ -234,7 +206,6 @@ async function checkout() {
         });
 
         const data = await res.json();
-        console.log("Checkout:", data);
 
         if (res.ok) {
             alert("შეკვეთა წარმატებით განხორციელდა!");
@@ -245,11 +216,6 @@ async function checkout() {
     } catch (err) {
         console.error("Checkout error:", err);
     }
-}
-
-function updateCartCount(count) {
-    const cartCount = document.getElementById("cart-count");
-    if (cartCount) cartCount.textContent = count;
 }
 
 loadCart();

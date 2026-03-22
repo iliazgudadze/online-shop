@@ -3,22 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cart</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
-    <div id="cart"></div>
+    <header class="header">
+        <div>
+            <a href="../index.html">
+                <h1 class="headerh">Digital <span class="onespan">Store</span></h1>
+            </a>
+            
+        </div>
+        <div>
+            <input type="text" id="search" class="search-box" placeholder="ძებნა...">
+        </div>
+        <div class="header-right">
+            <div class="auth">
+              <a href="./sign-up.html"><i class="fa-regular fa-id-card"></i> Sign up</a>
+              <a href="./sign-in.html"><i class="fa-regular fa-user"></i> Log in</a>
+              <a href="./profile.html">profile</a>
+            </div> 
+            <input type="checkbox" id="menu-toggle">
+        
+            <label for="menu-toggle" class="menu-icon">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+        
+            <div class="mobile-menu">
+        
+                <label for="menu-toggle" class="close">
+                    <i class="fa-solid fa-xmark"></i>
+                </label>
+        
+                <a href="../index.html">Home</a>
+                <a href="./shop.html">Shop</a>
+                <a href="./sign-in.html">Log in</a>
+                <a href="./sign-up.html">Sign up</a>
+                <a href="./profile.html">profile</a>
+        
+            </div>
+        </div>
+    </header> 
+
     <section class="cart1">
+        <div id="loader">Loading...</div>
         <div id="cart-container"></div>
         <div id="cart-total"></div>
-        <span id="cart-count">0</span>
-        <div id="loader">Loading...</div>
-    </section>
- 
-    <button onclick="checkout()">ყიდვა</button>
-    <button onclick="clearCart()">კალათის გასუფთავება</button>
- 
-    <script src="../js/cart.js"></script>
 
+        <div class="cart-actions">
+            <button class="btn-clear" onclick="clearCart()">
+                <i class="fa-solid fa-trash"></i> კალათის გასუფთავება
+            </button>
+            <button class="btn-checkout" onclick="checkout()">
+                <i class="fa-solid fa-bag-shopping"></i> ყიდვა
+            </button>
+        </div>
+    </section>
 
     <script src="../js/cart.js"></script>
 </body>
