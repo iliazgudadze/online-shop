@@ -138,6 +138,7 @@
 
 .auth {
   display: flex;
+  gap: 10px;
 }
 
 .auth a {
