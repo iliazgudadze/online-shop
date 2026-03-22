@@ -203,7 +203,6 @@ async function clearCart() {
             headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {
-            // manually reset UI without waiting for loadCart
             const container = document.getElementById("cart-container");
             if (container) container.innerHTML = "<p style='text-align:center; color:#888; padding:40px 0;'>კალათა ცარიელია</p>";
             updateTotal(0);

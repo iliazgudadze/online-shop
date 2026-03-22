@@ -99,34 +99,28 @@ async function applyFilters(page = 1) {
       );
       const data = await res.json();
       products = data.products || [];
-    } else if (brand) {
+    }
+    else if (brand) {
       const res = await fetch(
-        `https://api.everrest.educata.dev/shop/products/search?brand=${brand}&page_size=200`
-      );
-      const data = await res.json();
-      products = data.products || [];
-    } else {
-      const res = await fetch(
-        `https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=200`
+        `https://api.everrest.educata.dev/shop/products/search?brand=${brand}&page_size=50`
       );
       const data = await res.json();
       products = data.products || [];
     }
-
+    else {
+      const res = await fetch(
+        `https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=50`
+      );
+      const data = await res.json();
+      products = data.products || [];
+    }
     if (categoryId && brand) {
       products = products.filter(p =>
         p.brand && p.brand.toLowerCase() === brand.toLowerCase()
       );
     }
-
     if (rating) {
       products = products.filter(p => Math.round(p.rating) === rating);
-    }
-
-    if (products.length === 0) {
-      allProductContainer.innerHTML = "<p style='padding:40px;color:#888;text-align:center'>პროდუქტი ვერ მოიძებნა</p>";
-      togglePagination(true);
-      return;
     }
 
     const pageSize = 9;
@@ -217,7 +211,7 @@ function buildCard(product) {
       <p class="cp1">${product.price.current}$</p>
       <p class="cp2">⭐ ${Math.round(product.rating)}</p>
       <button onclick="event.stopPropagation(); addToCart('${product._id}')"
-        class="sbutton ${disabled}">
+        class="sbutton" ${disabled}>
           Add To Cart
       </button>
     </div>

@@ -91,7 +91,7 @@ if (container) {
           <h3 class="sec1h">${product.title}</h3>
           <p class="stock">${Math.max(0, product.stock)} stock</p>
           <p class="sec1p">$${product.price.current}</p>
-          <p class="sec1p2">⭐${product.rating}</p>
+          <p class="sec1p2">⭐ ${Math.round(product.rating)}</p>
           <button class="cbutton" ${product.stock <= 0 ? "disabled" : ""}>
             Add To Cart
           </button>

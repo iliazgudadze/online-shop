@@ -14,14 +14,14 @@ fetch(`https://api.everrest.educata.dev/shop/products/id/${productId}`)
                 <div class="product-right">          
                     <h1 class="ph1">${product.title}</h1>           
                     <p class="price">Price: $${product.price.current}</p>           
-                    <p class="rating">⭐ ${product.rating}</p>          
-                    <p class="${product.title === 'Samsung A546E Galaxy A54 (6GB/128GB) Dual Sim LTE/5G - Black' ? 'pgreen' : 'pstock'}">
-                      ${product.stock} stock
-                    </p>
+                    <p class="rating">⭐ ${Math.round(product.rating)}</p>        
+                    <p class="${product.stock > 0 ? 'pgreen' : 'pstock'}">
+        ${Math.max(0, product.stock)} stock
+      </p>
                     <h3 class="ph3" >Description</h3>
                     <p class="description">${product.description}</p>
                     <button onclick="addToCart('${product._id}')"
-                      class="button ${product.stock <= 0 ? "disabled" : ""}">
+                      class="abutton" ${product.stock <= 0 ? "disabled" : ""}>
                       Add To Cart
                     </button>
                 </div> 
