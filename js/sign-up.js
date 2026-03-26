@@ -44,6 +44,7 @@ async function signUp(event) {
     }
 
     if (res.ok) {
+      console.log(data);
       alert("რეგისტრაცია წარმატებით დასრულდა!");
     } else {
       alert("შეცდომა: " + (data.message || "სცადე თავიდან"));
@@ -60,8 +61,8 @@ function showError(fieldId, message) {
   const field = document.getElementById(fieldId);
   if (!field) return;
 
-  field.style.borderColor = "#ef4444";
-  field.style.boxShadow   = "0 0 0 3px rgba(239,68,68,0.15)";
+  field.style.borderColor = "#b30000";
+  field.style.boxShadow   = "0 0 0 3px rgba(255, 0, 0, 0.15)";
 
   const err = document.createElement("p");
   err.className   = "field-error";

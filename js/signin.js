@@ -17,6 +17,7 @@ async function signIn() {
         if (res.ok && data.access_token) {
             localStorage.setItem("token", data.access_token);
             alert("წარმატებით შეხვედი!");
+            window.location.href = "../index.html";
         } else {
             alert("შეცდომა: " + (data.message || data.error));
         }
